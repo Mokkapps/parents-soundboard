@@ -1,20 +1,22 @@
 export default {
+  appTitle: 'Eltern Soundboard',
+  editModeDesc: 'Tippe auf den Text in einer Karte um ihn zu ändern. Neue Sounds können mit dem "+" Symbol in der App-Leiste hinzugefügt werden.',
   sounds: [
     {
       id: 0,
-      title: "Nein"
+      text: 'Nein'
     },
     {
       id: 1,
-      title: "Aufhören"
+      text: 'Aufhören'
     },
     {
       id: 2,
-      title: "Wir sind gleich da"
+      text: 'Wir sind gleich da'
     },
     {
       id: 3,
-      title: "Nicht hauen"
+      text: 'Nicht hauen'
     }
   ]
 };

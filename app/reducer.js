@@ -1,17 +1,15 @@
 export const SET_IS_PLAYING = 'SET_IS_PLAYING';
-export const SET_PLAYLIST = 'SET_PLAYLIST';
-export const SET_CURRENT_PLAYING_SOUND = 'SET_CURRENT_PLAYING_SOUND';
 export const SET_EDIT_MODE = 'SET_EDIT_MODE';
+export const SET_AVAILABLE_SOUNDS = 'SET_AVAILABLE_SOUNDS';
 
 const initialState = {
   editMode: false,
   isPlaying: false,
-  currentPlaylist: [],
-  currentPlayingSound: null
+  availableSounds: []
 };
 
 export default function reducer(state = initialState, action) {
-  console.log('triggered action', action);
+  console.log('Triggered reducer action:', action);
   switch (action.type) {
     case SET_EDIT_MODE:
       const { editMode } = action.payload;
@@ -19,12 +17,10 @@ export default function reducer(state = initialState, action) {
     case SET_IS_PLAYING:
       const { isPlaying } = action.payload;
       return { ...state, isPlaying };
-    case SET_PLAYLIST:
-      const { currentPlaylist } = action.payload;
-      return { ...state, currentPlaylist };
-    case SET_CURRENT_PLAYING_SOUND:
-      const { currentPlayingSound } = action.payload;
-      return { ...state, SET_CURRENT_PLAYING_SOUND };
+    case SET_AVAILABLE_SOUNDS:
+      const { availableSounds } = action.payload;
+      console.log('New available sounds', availableSounds);
+      return { ...state, availableSounds };
     default:
       return state;
   }

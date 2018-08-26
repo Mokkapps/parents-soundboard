@@ -11,31 +11,35 @@ import {
   TouchableOpacity,
   ToastAndroid
 } from 'react-native';
+import styled from 'styled-components';
 import Tts from 'react-native-tts';
 import { connect } from 'react-redux';
 
 import I18n from '../i18n/i18n';
+import SoundCard from './SoundCard';
+import { storeData, AVAILABLE_SOUNDS_STORAGE_KEY } from '../asyncStorage';
 
-const data = I18n.t('sounds');
+const SoundsView = styled.View`
+  flex: 1;
+  margin-bottom: 10px;
+`;
 
-// import { AdMobInterstitial } from "react-native-admob";
-// import SoundListAd from "./ads/SoundListAd";
-// var AdMobConfig = require("../config/ads.json");
+const DescriptionText = styled.Text`
+  margin: 5px;
+  font-size: 20;
+  text-align: center;
+`;
 
-function requestInterstitialAd() {
-  //   if (AdMobConfig.isAdmobEnable) {
-  //     AdMobInterstitial.setAdUnitID(AdMobConfig.InterstitialID);
-  //     AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
-  //   }
-}
-
-function longPressSong(item) {
-  alert(item.sound);
-}
+const styles = StyleSheet.create({
+  flatContainer: {
+    margin: 5
+  }
+});
 
 class SoundList extends React.Component {
   constructor() {
     super();
+
     Tts.addEventListener('tts-start', event => console.log('TTS start', event));
     Tts.addEventListener('tts-finish', event => {
       console.log('TTS finish', event);
@@ -47,38 +51,61 @@ class SoundList extends React.Component {
     });
   }
 
-  playSound = soundObject => {
-    Tts.speak(soundObject.title);
+  _playSound = sound => {
+    Tts.speak(sound.text);
     this.props.setIsPlaying(true);
   };
 
-  _onTextChange = (text, id) => console.log('Text changed', text, id);
+  _onTextChange = (text, id) => {
+    const newSound = { text, id };
+    const { availableSounds } = this.props;
+    const newAvailableSounds = availableSounds.map(s => {
+      if (s.id === newSound.id) {
+        s.text = newSound.text;
+      }
+      return s;
+    });
+
+    this._setAvailableSounds(newAvailableSounds);
+  };
 
   _renderItem = ({ item }) => {
     const { editMode } = this.props;
     return (
-      <TouchableWithoutFeedback onPress={() => this.playSound(item)}>
-        <View style={styles.box}>
-          {editMode ? (
-            <TextInput onChangeText={text => this._onTextChange(text, item.id)}>
-              {item.title}
-            </TextInput>
-          ) : (
-            <Text>{item.title}</Text>
-          )}
-        </View>
-      </TouchableWithoutFeedback>
+      <SoundCard
+        sound={item}
+        editMode={editMode}
+        playSound={this._playSound}
+        onTextChange={this._onTextChange}
+        removeSound={this._removeSound}
+      />
     );
   };
 
+  _removeSound = sound => {
+    const { availableSounds } = this.props;
+    const filteredAvailableSounds = availableSounds.filter(
+      s => s.id !== sound.id
+    );
+
+    this._setAvailableSounds(filteredAvailableSounds);
+  };
+
+  _setAvailableSounds = availableSounds => {
+    this.props.setAvailableSounds(availableSounds);
+    storeData(JSON.stringify(availableSounds), AVAILABLE_SOUNDS_STORAGE_KEY);
+  };
+
   render() {
-    const { editMode } = this.props;
-    console.log('editMode render', editMode);
+    const { editMode, availableSounds } = this.props;
     return (
-      <View style={styles.flatView}>
+      <SoundsView>
+        {editMode ? (
+          <DescriptionText>{I18n.t('editModeDesc')}</DescriptionText>
+        ) : null}
         <FlatList
           keyExtractor={(item, index) => item.id}
-          data={data}
+          data={availableSounds}
           extraData={this.props}
           renderItem={this._renderItem}
           contentContainerStyle={styles.flatContainer}
@@ -86,39 +113,22 @@ class SoundList extends React.Component {
           numColumns={3}
           removeClippedSubviews={true}
         />
-      </View>
+      </SoundsView>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  box: {
-    width: 100,
-    height: 100,
-    backgroundColor: 'grey',
-    margin: 5,
-    borderRadius: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1
-  },
-  flatContainer: {
-    margin: 5
-  },
-  flatView: {
-    flex: 1,
-    marginBottom: 10
-  }
-});
-
-const mapStateToProps = ({ editMode }) => ({
-  editMode
+const mapStateToProps = ({ editMode, availableSounds }) => ({
+  editMode,
+  availableSounds
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     setIsPlaying: isPlaying =>
-      dispatch({ type: 'SET_IS_PLAYING', payload: { isPlaying } })
+      dispatch({ type: 'SET_IS_PLAYING', payload: { isPlaying } }),
+    setAvailableSounds: availableSounds =>
+      dispatch({ type: 'SET_AVAILABLE_SOUNDS', payload: { availableSounds } })
   };
 };
 

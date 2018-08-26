@@ -1,20 +1,22 @@
 export default {
+  appTitle: 'Parents Soundboard',
+  editModeDesc: 'Tap on the text in a card to change it. New sounds can be added by clicking the "+" symbol in the app header.',
   sounds: [
     {
       id: 0,
-      title: 'No'
+      text: 'No'
     },
     {
       id: 1,
-      title: 'Stop'
+      text: 'Stop'
     },
     {
       id: 2,
-      title: "We're almost there"
+      text: "We're almost there"
     },
     {
       id: 3,
-      title: 'Stop bashing'
+      text: 'Stop bashing'
     }
   ]
 };

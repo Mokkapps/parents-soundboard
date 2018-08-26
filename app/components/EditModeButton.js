@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import Tts from 'react-native-tts';
 import { connect } from 'react-redux';
 
@@ -15,9 +15,9 @@ const mapDispatchToProps = dispatch => {
 };
 
 const EditModeButton = ({ editMode, setEditMode }) => (
-  <Button
+  <Icon
+    name={editMode ? 'save' : 'edit'}
     onPress={() => setEditMode(!editMode)}
-    title={editMode ? 'Start Edit' : 'Stop Edit'}
   />
 );
 

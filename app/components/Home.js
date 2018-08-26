@@ -1,34 +1,55 @@
 import React from 'react';
-import { Button } from 'react-native-elements';
 import { View, Text, StatusBar, FlatList, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
+import I18n from '../i18n/i18n';
 import SoundList from './SoundList';
 import StopButton from './StopButton';
+import AddSoundButton from './AddSoundButton';
 import EditModeButton from './EditModeButton';
+import { retrieveData, AVAILABLE_SOUNDS_STORAGE_KEY } from '../asyncStorage';
 
-// import { AdMobInterstitial } from "react-native-admob";
-// import SoundListAd from "./ads/SoundListAd";
-
-// var AdMobConfig = require("../config/ads.json");
+const HeaderButtons = styled.View`
+  display: flex;
+  flex-direction: row;
+  margin-right: 10;
+  margin-bottom: 10;
+`;
 
 class Home extends React.Component {
   static navigationOptions = {
-    title: 'Home',
+    title: I18n.t('appTitle'),
     headerRight: (
-      <View>
+      <HeaderButtons>
         <StopButton />
+        <AddSoundButton />
         <EditModeButton />
-      </View>
+      </HeaderButtons>
     )
   };
+
+  constructor() {
+    super();
+
+    const defaultSounds = I18n.t('sounds');
+
+    retrieveData(AVAILABLE_SOUNDS_STORAGE_KEY)
+      .then(storedData =>
+        this.props.setAvailableSounds(
+          storedData !== undefined ? storedData : defaultSounds
+        )
+      )
+      .catch(error => {
+        console.error(`Failed fetching available sounds:`, error);
+        this.props.setAvailableSounds(defaultSounds);
+      });
+  }
 
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <StatusBar backgroundColor="green" barStyle="light-content" />
         <SoundList />
-        {/* <SoundListAd /> */}
       </View>
     );
   }
@@ -38,7 +59,14 @@ const mapStateToProps = ({ isPlaying }) => ({
   isPlaying
 });
 
+const mapDispatchToProps = dispatch => {
+  return {
+    setAvailableSounds: availableSounds =>
+      dispatch({ type: 'SET_AVAILABLE_SOUNDS', payload: { availableSounds } })
+  };
+};
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Home);
