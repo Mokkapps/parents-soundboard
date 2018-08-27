@@ -8,7 +8,7 @@ const mapStateToProps = ({ isPlaying }) => ({
 });
 
 const StopButton = ({ isPlaying }) =>
-  isPlaying ? <Icon name="volume-mute" onPress={() => Tts.stop()} /> : null;
+  isPlaying ? <Icon name="volume-mute" onPress={() => Tts.stop()} underlayColor="transparent" /> : null;
 
 export default (connect(
   mapStateToProps,

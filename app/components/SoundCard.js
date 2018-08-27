@@ -1,41 +1,49 @@
 import React from 'react';
-import { Button, TouchableOpacity, View } from 'react-native';
+import { Text, TextInput } from 'react-native';
+import { Icon } from 'react-native-elements';
 import styled from 'styled-components';
 
-const SoundItem = styled.View`
+import { COLORS } from '../constants';
+
+const SoundItem = styled.TouchableOpacity`
   width: 100px;
   height: 100px;
-  background-color: #333333;
+  background-color: ${COLORS.LIGHT_GRAY};
   margin: 5px;
   border-radius: 5px;
+  position: relative;
+  align-content: center;
   justify-content: center;
   align-items: center;
   flex: 1;
 `;
 
-const StyledText = styled.Text`
-  color: white;
-`;
-
-const StyledTextInput = styled.TextInput`
-  color: white;
-`;
-
 export default ({ sound, editMode, playSound, onTextChange, removeSound }) => (
-  <TouchableOpacity onPress={() => playSound(sound)}>
-    <SoundItem>
-      <View>
-        {editMode ? (
-          <Button title="X" color="red" onPress={() => removeSound(sound)} />
-        ) : null}
-        {editMode ? (
-          <StyledTextInput onChangeText={text => onTextChange(text, sound.id)}>
-            {sound.text}
-          </StyledTextInput>
-        ) : (
-          <StyledText>{sound.text}</StyledText>
-        )}
-      </View>
-    </SoundItem>
-  </TouchableOpacity>
+  <SoundItem onPress={() => playSound(sound)}>
+    {editMode ? (
+      <TextInput onChangeText={text => onTextChange(text, sound.id)}>
+        {sound.text}
+      </TextInput>
+    ) : (
+      <Text>{sound.text}</Text>
+    )}
+    {editMode ? (
+      <Icon
+        containerStyle={{
+          height: 25,
+          width: 25,
+          position: 'absolute',
+          right: 0,
+          top: -12,
+          left: -15,
+          bottom: 0
+        }}
+        raised
+        underlayColor="transparent"
+        name="clear"
+        color="red"
+        onPress={() => removeSound(sound)}
+      />
+    ) : null}
+  </SoundItem>
 );

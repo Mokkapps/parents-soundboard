@@ -16,7 +16,11 @@ const addNewSound = ({ availableSounds, setAvailableSounds }) => {
 const AddSoundButton = props => {
   const { editMode } = props;
   return editMode ? (
-    <Icon name="add" onPress={() => addNewSound(props)} />
+    <Icon
+      name="add"
+      onPress={() => addNewSound(props)}
+      underlayColor="transparent"
+    />
   ) : null;
 };
 

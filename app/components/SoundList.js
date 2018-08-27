@@ -15,13 +15,14 @@ const SoundsView = styled.View`
 
 const DescriptionText = styled.Text`
   margin: 5px;
+  color: white;
   font-size: 20;
   text-align: center;
 `;
 
 const styles = StyleSheet.create({
   flatContainer: {
-    margin: 5
+    margin: 10
   }
 });
 
@@ -102,7 +103,6 @@ class SoundList extends React.Component {
           contentContainerStyle={styles.flatContainer}
           horizontal={false}
           numColumns={3}
-          removeClippedSubviews
         />
       </SoundsView>
     );

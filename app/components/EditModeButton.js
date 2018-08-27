@@ -17,6 +17,7 @@ const EditModeButton = ({ editMode, setEditMode }) => (
   <Icon
     name={editMode ? 'save' : 'edit'}
     onPress={() => setEditMode(!editMode)}
+    underlayColor="transparent"
   />
 );
 

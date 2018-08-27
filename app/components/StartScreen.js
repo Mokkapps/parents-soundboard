@@ -10,24 +10,31 @@ import StopButton from './StopButton';
 import AddSoundButton from './AddSoundButton';
 import EditModeButton from './EditModeButton';
 import { retrieveData, AVAILABLE_SOUNDS_STORAGE_KEY } from '../asyncStorage';
+import { COLORS } from '../constants';
 
 const HeaderButtons = styled.View`
   display: flex;
   flex-direction: row;
   margin-right: 10;
-  margin-bottom: 10;
 `;
 
 class StartScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: I18n.t('APP_TITLE'),
+      headerStyle: {
+        backgroundColor: COLORS.MOKKAPPS_RED
+      },
       headerRight: (
         <HeaderButtons>
           <StopButton />
           <AddSoundButton />
           <EditModeButton />
-          <Icon name="settings" onPress={() => navigation.navigate('About')} />
+          <Icon
+            name="settings"
+            onPress={() => navigation.navigate('About')}
+            underlayColor="transparent"
+          />
         </HeaderButtons>
       )
     };
