@@ -172,6 +172,15 @@ typings/
 .serverless
 
 ### ReactNative.Android Stack ###
+
+# Android/IntelliJ
+#
+build/
+.idea
+.gradle
+local.properties
+*.iml
+
 # Built application files
 *.apk
 *.ap_
