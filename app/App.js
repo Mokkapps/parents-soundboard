@@ -5,7 +5,8 @@ import { Provider } from 'react-redux';
 import styled from 'styled-components';
 
 import reducer from './reducer';
-import Home from './components/Home';
+import StartScreen from './components/StartScreen';
+import AboutScreen from './components/AboutScreen';
 
 const StyledView = styled.View`
   background-color: #fff;
@@ -15,7 +16,8 @@ const StyledView = styled.View`
 const store = createStore(reducer);
 
 const Stack = createStackNavigator({
-  Home: { screen: Home }
+  Start: { screen: StartScreen },
+  About: { screen: AboutScreen }
 });
 
 export default () => (

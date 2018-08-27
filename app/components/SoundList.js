@@ -29,16 +29,14 @@ class SoundList extends React.Component {
   constructor() {
     super();
 
-    const { setIsPlaying } = this.props;
-
     Tts.addEventListener('tts-start', event => console.log('TTS start', event));
     Tts.addEventListener('tts-finish', event => {
       console.log('TTS finish', event);
-      setIsPlaying(false);
+      this.props.setIsPlaying(false);
     });
     Tts.addEventListener('tts-cancel', event => {
       console.log('TTS cancel', event);
-      setIsPlaying(false);
+      this.props.setIsPlaying(false);
     });
   }
 
@@ -58,10 +56,10 @@ class SoundList extends React.Component {
       return s;
     });
 
-    this.setAvailableSounds(newAvailableSounds);
+    this.updateAvailableSounds(newAvailableSounds);
   };
 
-  _renderItem = ({ item }) => {
+  renderItem = ({ item }) => {
     const { editMode } = this.props;
     return (
       <SoundCard
@@ -80,10 +78,10 @@ class SoundList extends React.Component {
       s => s.id !== sound.id
     );
 
-    this.setAvailableSounds(filteredAvailableSounds);
+    this.updateAvailableSounds(filteredAvailableSounds);
   };
 
-  setAvailableSounds = availableSounds => {
+  updateAvailableSounds = availableSounds => {
     const { setAvailableSounds } = this.props;
     setAvailableSounds(availableSounds);
     storeData(JSON.stringify(availableSounds), AVAILABLE_SOUNDS_STORAGE_KEY);
@@ -94,10 +92,10 @@ class SoundList extends React.Component {
     return (
       <SoundsView>
         {editMode ? (
-          <DescriptionText>{I18n.t('editModeDesc')}</DescriptionText>
+          <DescriptionText>{I18n.t('EDIT_MODE_DESC')}</DescriptionText>
         ) : null}
         <FlatList
-          keyExtractor={(item) => item.id}
+          keyExtractor={item => item.id}
           data={availableSounds}
           extraData={this.props}
           renderItem={this.renderItem}

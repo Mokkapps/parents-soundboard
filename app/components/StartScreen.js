@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -17,33 +18,35 @@ const HeaderButtons = styled.View`
   margin-bottom: 10;
 `;
 
-class Home extends React.Component {
-  static navigationOptions = {
-    title: I18n.t('appTitle'),
-    headerRight: (
-      <HeaderButtons>
-        <StopButton />
-        <AddSoundButton />
-        <EditModeButton />
-      </HeaderButtons>
-    )
+class StartScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: I18n.t('APP_TITLE'),
+      headerRight: (
+        <HeaderButtons>
+          <StopButton />
+          <AddSoundButton />
+          <EditModeButton />
+          <Icon name="settings" onPress={() => navigation.navigate('About')} />
+        </HeaderButtons>
+      )
+    };
   };
 
   constructor() {
     super();
 
-    const defaultSounds = I18n.t('sounds');
-    const { setAvailableSounds } = this.props;
+    const defaultSounds = I18n.t('SOUNDS');
 
     retrieveData(AVAILABLE_SOUNDS_STORAGE_KEY)
       .then(storedData =>
-        setAvailableSounds(
+        this.props.setAvailableSounds(
           storedData !== undefined ? storedData : defaultSounds
         )
       )
       .catch(error => {
         console.error('Failed fetching available sounds:', error);
-        setAvailableSounds(defaultSounds);
+        this.props.setAvailableSounds(defaultSounds);
       });
   }
 
@@ -70,4 +73,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home);
+)(StartScreen);

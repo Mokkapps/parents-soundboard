@@ -1,7 +1,12 @@
 export default {
-  appTitle: 'Parents Soundboard',
-  editModeDesc: 'Tap on the text in a card to change it. New sounds can be added by clicking the "+" symbol in the app header.',
-  sounds: [
+  MAIL_SUBJECT: 'Parents Soundboard App Feedback',
+  VERSION: 'Version',
+  CONTACT_US: 'Contact us',
+  RATE_APP: 'Rate the app',
+  APP_TITLE: 'Parents Soundboard',
+  EDIT_MODE_DESC:
+    'Tap on the text in a card to change it. New sounds can be added by clicking the "+" symbol in the app header.',
+  SOUNDS: [
     {
       id: 0,
       text: 'No'

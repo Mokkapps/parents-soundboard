@@ -10,14 +10,16 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   console.log('Triggered reducer action:', action);
-  const { editMode, isPlaying, availableSounds } = action.payload;
 
   switch (action.type) {
     case SET_EDIT_MODE:
+      const { editMode } = action.payload;
       return { ...state, editMode };
     case SET_IS_PLAYING:
+      const { isPlaying } = action.payload;
       return { ...state, isPlaying };
     case SET_AVAILABLE_SOUNDS:
+      const { availableSounds } = action.payload;
       return { ...state, availableSounds };
     default:
       return state;
