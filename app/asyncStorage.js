@@ -21,4 +21,5 @@ export const retrieveData = async key => {
   } catch (error) {
     throw Error(`Failed retrieving data from key ${key}`);
   }
+  return Promise.resolve();
 };

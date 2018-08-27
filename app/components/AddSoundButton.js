@@ -25,12 +25,14 @@ const addNewSound = ({ availableSounds, setAvailableSounds }) => {
   storeData(JSON.stringify(newSounds), AVAILABLE_SOUNDS_STORAGE_KEY);
 };
 
-const AddSoundButton = props =>
-  props.editMode ? (
+const AddSoundButton = props => {
+  const { editMode } = props;
+  return editMode ? (
     <Icon name="add" onPress={() => addNewSound(props)} />
   ) : null;
+};
 
-export default (ConnectedAddSoundButton = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddSoundButton));
+)(AddSoundButton);

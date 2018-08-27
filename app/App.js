@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { createStore } from 'redux';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import styled from 'styled-components';
 
 import reducer from './reducer';
@@ -19,14 +18,10 @@ const Stack = createStackNavigator({
   Home: { screen: Home }
 });
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <StyledView>
-          <Stack />
-        </StyledView>
-      </Provider>
-    );
-  }
-}
+export default () => (
+  <Provider store={store}>
+    <StyledView>
+      <Stack />
+    </StyledView>
+  </Provider>
+);

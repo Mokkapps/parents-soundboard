@@ -1,16 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  FlatList,
-  Button,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  Alert,
-  TouchableOpacity,
-  ToastAndroid
-} from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import styled from 'styled-components';
 import Tts from 'react-native-tts';
 import { connect } from 'react-redux';
@@ -40,23 +29,26 @@ class SoundList extends React.Component {
   constructor() {
     super();
 
+    const { setIsPlaying } = this.props;
+
     Tts.addEventListener('tts-start', event => console.log('TTS start', event));
     Tts.addEventListener('tts-finish', event => {
       console.log('TTS finish', event);
-      this.props.setIsPlaying(false);
+      setIsPlaying(false);
     });
     Tts.addEventListener('tts-cancel', event => {
       console.log('TTS cancel', event);
-      this.props.setIsPlaying(false);
+      setIsPlaying(false);
     });
   }
 
-  _playSound = sound => {
+  playSound = sound => {
+    const { setIsPlaying } = this.props;
     Tts.speak(sound.text);
-    this.props.setIsPlaying(true);
+    setIsPlaying(true);
   };
 
-  _onTextChange = (text, id) => {
+  onTextChange = (text, id) => {
     const newSound = { text, id };
     const { availableSounds } = this.props;
     const newAvailableSounds = availableSounds.map(s => {
@@ -66,7 +58,7 @@ class SoundList extends React.Component {
       return s;
     });
 
-    this._setAvailableSounds(newAvailableSounds);
+    this.setAvailableSounds(newAvailableSounds);
   };
 
   _renderItem = ({ item }) => {
@@ -75,24 +67,25 @@ class SoundList extends React.Component {
       <SoundCard
         sound={item}
         editMode={editMode}
-        playSound={this._playSound}
-        onTextChange={this._onTextChange}
-        removeSound={this._removeSound}
+        playSound={this.playSound}
+        onTextChange={this.onTextChange}
+        removeSound={this.removeSound}
       />
     );
   };
 
-  _removeSound = sound => {
+  removeSound = sound => {
     const { availableSounds } = this.props;
     const filteredAvailableSounds = availableSounds.filter(
       s => s.id !== sound.id
     );
 
-    this._setAvailableSounds(filteredAvailableSounds);
+    this.setAvailableSounds(filteredAvailableSounds);
   };
 
-  _setAvailableSounds = availableSounds => {
-    this.props.setAvailableSounds(availableSounds);
+  setAvailableSounds = availableSounds => {
+    const { setAvailableSounds } = this.props;
+    setAvailableSounds(availableSounds);
     storeData(JSON.stringify(availableSounds), AVAILABLE_SOUNDS_STORAGE_KEY);
   };
 
@@ -104,14 +97,14 @@ class SoundList extends React.Component {
           <DescriptionText>{I18n.t('editModeDesc')}</DescriptionText>
         ) : null}
         <FlatList
-          keyExtractor={(item, index) => item.id}
+          keyExtractor={(item) => item.id}
           data={availableSounds}
           extraData={this.props}
-          renderItem={this._renderItem}
+          renderItem={this.renderItem}
           contentContainerStyle={styles.flatContainer}
           horizontal={false}
           numColumns={3}
-          removeClippedSubviews={true}
+          removeClippedSubviews
         />
       </SoundsView>
     );

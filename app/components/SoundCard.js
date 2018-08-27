@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, TouchableOpacity, Text, View, TextInput } from 'react-native';
+import { Button, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components';
 
 const SoundItem = styled.View`
@@ -21,13 +21,7 @@ const StyledTextInput = styled.TextInput`
   color: white;
 `;
 
-export default (SoundCard = ({
-  sound,
-  editMode,
-  playSound,
-  onTextChange,
-  removeSound
-}) => (
+export default ({ sound, editMode, playSound, onTextChange, removeSound }) => (
   <TouchableOpacity onPress={() => playSound(sound)}>
     <SoundItem>
       <View>
@@ -44,4 +38,4 @@ export default (SoundCard = ({
       </View>
     </SoundItem>
   </TouchableOpacity>
-));
+);

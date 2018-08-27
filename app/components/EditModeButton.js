@@ -1,6 +1,5 @@
 import React from 'react';
 import { Icon } from 'react-native-elements';
-import Tts from 'react-native-tts';
 import { connect } from 'react-redux';
 
 const mapStateToProps = ({ editMode }) => ({
@@ -21,7 +20,7 @@ const EditModeButton = ({ editMode, setEditMode }) => (
   />
 );
 
-export default (ConnectedEditModeButton = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(EditModeButton));
+)(EditModeButton);

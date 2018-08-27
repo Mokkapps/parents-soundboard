@@ -10,7 +10,7 @@ const mapStateToProps = ({ isPlaying }) => ({
 const StopButton = ({ isPlaying }) =>
   isPlaying ? <Icon name="volume-mute" onPress={() => Tts.stop()} /> : null;
 
-export default (ConnectedStopButton = connect(
+export default (connect(
   mapStateToProps,
   null
 )(StopButton));

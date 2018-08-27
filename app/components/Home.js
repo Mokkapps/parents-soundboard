@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StatusBar, FlatList, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -33,16 +33,17 @@ class Home extends React.Component {
     super();
 
     const defaultSounds = I18n.t('sounds');
+    const { setAvailableSounds } = this.props;
 
     retrieveData(AVAILABLE_SOUNDS_STORAGE_KEY)
       .then(storedData =>
-        this.props.setAvailableSounds(
+        setAvailableSounds(
           storedData !== undefined ? storedData : defaultSounds
         )
       )
       .catch(error => {
-        console.error(`Failed fetching available sounds:`, error);
-        this.props.setAvailableSounds(defaultSounds);
+        console.error('Failed fetching available sounds:', error);
+        setAvailableSounds(defaultSounds);
       });
   }
 
