@@ -4,13 +4,12 @@ import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import I18n from '../i18n/i18n';
-import SoundList from './SoundList';
-import StopButton from './StopButton';
-import AddSoundButton from './AddSoundButton';
-import EditModeButton from './EditModeButton';
-import { retrieveData, AVAILABLE_SOUNDS_STORAGE_KEY } from '../asyncStorage';
-import { COLORS } from '../constants';
+import I18n from '../../i18n/i18n';
+import SoundList from '../SoundList';
+import StopButton from '../StopButton';
+import AddSoundButton from '../AddSoundButton';
+import EditModeButton from '../EditModeButton';
+import { retrieveData, AVAILABLE_SOUNDS_STORAGE_KEY } from '../../asyncStorage';
 
 const HeaderButtons = styled.View`
   display: flex;
@@ -22,9 +21,6 @@ class StartScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: I18n.t('APP_TITLE'),
-      headerStyle: {
-        backgroundColor: COLORS.MOKKAPPS_RED
-      },
       headerRight: (
         <HeaderButtons>
           <StopButton />
@@ -32,7 +28,7 @@ class StartScreen extends React.Component {
           <EditModeButton />
           <Icon
             name="settings"
-            onPress={() => navigation.navigate('About')}
+            onPress={() => navigation.navigate('Settings')}
             underlayColor="transparent"
           />
         </HeaderButtons>

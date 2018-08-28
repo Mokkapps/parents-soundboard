@@ -1,6 +1,6 @@
-import { Image, Linking, Platform } from 'react-native';
+import { Linking, Platform } from 'react-native';
 import React from 'react';
-import { Button, Text } from 'react-native-elements';
+import { Text } from 'react-native-elements';
 import email from 'react-native-email';
 import styled from 'styled-components';
 
@@ -9,24 +9,26 @@ import {
   MOKKAPPS_MAIL,
   APP_STORE_URL,
   GOOGLE_PLAY_URL
-} from '../constants';
-import I18n from '../i18n/i18n';
+} from '../../constants';
+import I18n from '../../i18n/i18n';
 import { version } from '../../package.json';
+import SettingsButton from '../SettingsButton';
+import SettingsDivider from '../SettingsDivider';
 
 const StyledContainer = styled.View`
-  margin: 10px;
+  margin: 5px;
   flex: 1;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 `;
 
-const ButtonWrapper = styled.View`
-  margin-top: 20px;
-  width: 200px;
+const ButtonGroup = styled.View`
+  width: 100%;
+  display: flex;
 `;
 
-class About extends React.Component {
+class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'About',
     headerStyle: {
@@ -53,38 +55,40 @@ class About extends React.Component {
   render() {
     return (
       <StyledContainer>
-        <Image source="../images/welcome.png" />
-        <Text h3 style={{ color: 'white' }}>
-          {I18n.t('APP_TITLE')}
+        <Text h4 style={{ color: 'white' }}>
+          TTS
         </Text>
-        <Text style={{ color: 'white' }}>{`${I18n.t(
-          'VERSION'
-        )} ${version}`}</Text>
-        <ButtonWrapper>
-          <Button
-            large
-            rounded
-            raised
-            backgroundColor={COLORS.LIGHT_GRAY}
-            color="black"
+        <ButtonGroup>
+          <SettingsButton
+            title={I18n.t('CHECK_TTS')}
+            onPress={this.onPressRate}
+          />
+          <SettingsButton
+            title={I18n.t('INSTALL_TTS_LANGUAGES')}
+            onPress={this.props.navigation.navigate('TtsLanguages')}
+          />
+        </ButtonGroup>
+        <SettingsDivider />
+        <Text h4 style={{ color: 'white' }}>
+          About
+        </Text>
+        <ButtonGroup>
+          <SettingsButton
             title={I18n.t('RATE_APP')}
             onPress={this.onPressRate}
           />
-        </ButtonWrapper>
-        <ButtonWrapper>
-          <Button
-            large
-            rounded
-            raised
-            backgroundColor={COLORS.LIGHT_GRAY}
-            color="black"
+          <SettingsButton
             title={I18n.t('CONTACT_US')}
             onPress={this.onPressContact}
           />
-        </ButtonWrapper>
+        </ButtonGroup>
+        <SettingsDivider />
+        <Text style={{ color: 'white' }}>{`${I18n.t(
+          'VERSION'
+        )} ${version}`}</Text>
       </StyledContainer>
     );
   }
 }
 
-export default About;
+export default SettingsScreen;
