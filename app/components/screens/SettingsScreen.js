@@ -9,7 +9,6 @@ import { MOKKAPPS_MAIL, APP_STORE_URL, GOOGLE_PLAY_URL } from '../../constants';
 import I18n from '../../i18n/i18n';
 import { version } from '../../../package.json';
 import SettingsButton from '../SettingsButton';
-import SettingsDivider from '../SettingsDivider';
 
 const StyledContainer = styled.View`
   margin: 5px;
@@ -26,7 +25,7 @@ const ButtonGroup = styled.View`
 
 class SettingsScreen extends React.Component {
   static navigationOptions = () => {
-    return { title: I18n.t('SETTINGS_SCREEN_TITLE'), };
+    return { title: I18n.t('SETTINGS_SCREEN_TITLE') };
   };
 
   onPressContact = () => {
@@ -84,8 +83,7 @@ class SettingsScreen extends React.Component {
             onPress={() => this.props.navigation.navigate('TtsLanguages')}
           />
         </ButtonGroup>
-        <SettingsDivider />
-        <Text h4 style={{ color: 'white' }}>
+        <Text h4 style={{ color: 'white', marginTop: 10 }}>
           About
         </Text>
         <ButtonGroup>
@@ -98,7 +96,6 @@ class SettingsScreen extends React.Component {
             onPress={this.onPressContact}
           />
         </ButtonGroup>
-        <SettingsDivider />
         <Text
           style={{ color: 'white', position: 'absolute', bottom: 0 }}
         >{`${I18n.t('VERSION')} ${version}`}</Text>

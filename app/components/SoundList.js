@@ -51,10 +51,11 @@ class SoundList extends React.Component {
     const newSound = { text, id };
     const { availableSounds } = this.props;
     const newAvailableSounds = availableSounds.map(s => {
-      if (s.id === newSound.id) {
-        s.text = newSound.text;
+      const sound = { ...s };
+      if (sound.id === newSound.id) {
+        sound.text = newSound.text;
       }
-      return s;
+      return sound;
     });
 
     this.updateAvailableSounds(newAvailableSounds);

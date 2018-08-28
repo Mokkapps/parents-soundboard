@@ -24,7 +24,10 @@ const SoundItem = styled.TouchableOpacity`
 export default ({ sound, editMode, playSound, onTextChange, removeSound }) => (
   <SoundItem disabled={editMode} onPress={() => playSound(sound)}>
     {editMode ? (
-      <SoundCardText shownText={sound.text} onTextChange={onTextChange} />
+      <SoundCardText
+        sound={sound}
+        onTextChange={onTextChange}
+      />
     ) : (
       <Text style={{ textAlign: 'center', color: 'black' }}>{sound.text}</Text>
     )}

@@ -28,26 +28,42 @@ class TtsLanguagesScreen extends React.Component {
     });
   }
 
-  onPress = id => {
-    Tts.setDefaultVoice(id)
-      .then(() => {
-        console.log('DONE');
-        this.refs.toast.show(
-          `${I18n.t('TTS_LANGUAGE_CHANGE_SUCCESS')} ${id}`,
-          CUSTOM_DURATION
-        );
-      })
-      .catch(err => {
-        this.refs.toast.show(`${err}`, CUSTOM_DURATION);
-      });
+  onPress = item => {
+    if (Platform.OS === 'ios') {
+      const { id } = item;
+      Tts.setDefaultVoice(id)
+        .then(() => {
+          this.refs.toast.show(
+            `${I18n.t('TTS_LANGUAGE_CHANGE_SUCCESS')} ${id}`,
+            CUSTOM_DURATION
+          );
+        })
+        .catch(err => {
+          this.refs.toast.show(`${err}`, CUSTOM_DURATION);
+        });
+    } else {
+      Tts.setDefaultLanguage(item)
+        .then(() => {
+          this.refs.toast.show(
+            `${I18n.t('TTS_LANGUAGE_CHANGE_SUCCESS')} ${item}`,
+            CUSTOM_DURATION
+          );
+        })
+        .catch(err => {
+          this.refs.toast.show(`${err}`, CUSTOM_DURATION);
+        });
+    }
   };
 
   render() {
     let { voices } = this.state;
-    console.log('voices', voices);
     if (Platform.OS === 'android') {
-      voices = voices.filter(voice => voice.notInstalled === false);
+      voices = voices
+        .filter(voice => voice.notInstalled === false)
+        .map(voice => voice.language);
+      voices = Array.from(new Set(voices));
     }
+    
     return (
       <StyledView>
         <FlatList

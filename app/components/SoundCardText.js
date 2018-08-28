@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInput } from 'react-native';
 
-export default ({ onTextChange, sound, shownText }) => (
+export default ({ onTextChange, sound }) => (
   <TextInput
     multiline
     numberOfLines={2}
@@ -14,6 +14,6 @@ export default ({ onTextChange, sound, shownText }) => (
     }}
     onChangeText={text => onTextChange(text, sound.id)}
   >
-    {shownText}
+    {sound.text}
   </TextInput>
 );
