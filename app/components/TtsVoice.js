@@ -5,8 +5,20 @@ import { COLORS } from '../constants';
 
 const getText = voice => {
   if (Platform.OS === 'ios') {
-    const regex = new RegExp(/^com\.apple\.ttsbundle\.(.*)-compact$/g);
-    const voiceName = regex.exec(voice.id)[1];
+    let voiceName = '';
+
+    if (!voice.name) {
+      try {
+        const regex = new RegExp(/^com\.apple\.ttsbundle\.(.*)-compact$/g);
+        console.log('voice regex', regex.exec(voice.id));
+        voiceName = regex.exec(voice.id)[1];
+      } catch (e) {
+        console.log('Could not match name from ID', voice.id);
+      }
+    } else {
+      voiceName = voice.name;
+    }
+
     return `${voiceName} (${voice.language})`;
   }
   return voice.id;

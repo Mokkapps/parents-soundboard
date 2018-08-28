@@ -1,6 +1,8 @@
 
 # Created by https://www.gitignore.io/api/reactnative
 
+android/ParentsSoundboard.keystore
+
 ### ReactNative ###
 # React Native Stack Base
 
@@ -13,6 +15,9 @@
 # Icon must end with two \r
 Icon
 
+# ios Pods
+
+ios/Pods
 
 # Thumbnails
 ._*

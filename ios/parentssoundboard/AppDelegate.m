@@ -10,6 +10,8 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
+@import GoogleMobileAds;
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -29,6 +31,10 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+  // Initialize Google Mobile Ads SDK
+  [GADMobileAds configureWithApplicationID:@"ca-app-pub-3605892700353864~6311465901"];
+
   return YES;
 }
 

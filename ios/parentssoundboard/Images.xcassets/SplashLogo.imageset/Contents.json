@@ -2,8 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "if_--10_1720770.png",
+      "filename" : "web_hi_res_512.png",
       "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

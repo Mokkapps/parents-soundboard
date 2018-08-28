@@ -1,6 +1,5 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -10,6 +9,7 @@ import HeaderStopButton from '../HeaderStopButton';
 import HeaderAddSoundButton from '../HeaderAddSoundButton';
 import HeaderEditModeButton from '../HeaderEditModeButton';
 import HeaderSettingsButton from '../HeaderSettingsButton';
+import AdBanner from '../AdBanner';
 import { retrieveData, AVAILABLE_SOUNDS_STORAGE_KEY } from '../../asyncStorage';
 
 const HeaderButtons = styled.View`
@@ -54,6 +54,7 @@ class StartScreen extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <SoundList />
+        <AdBanner />
       </View>
     );
   }
