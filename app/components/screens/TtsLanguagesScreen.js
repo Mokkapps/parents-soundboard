@@ -1,11 +1,13 @@
 import React from 'react';
 import { Platform, FlatList } from 'react-native';
-import Toast, { DURATION } from 'react-native-easy-toast';
+import Toast from 'react-native-easy-toast';
 import Tts from 'react-native-tts';
 import styled from 'styled-components';
 
 import TtsVoice from '../TtsVoice';
 import I18n from '../../i18n/i18n';
+
+const CUSTOM_DURATION = 750;
 
 const StyledView = styled.View`
   margin: 5px;
@@ -13,7 +15,7 @@ const StyledView = styled.View`
 
 class TtsLanguagesScreen extends React.Component {
   static navigationOptions = {
-    title: 'TTS Languages'
+    title: I18n.t('TTS_LANGUAGE_SCREEN_TITLE')
   };
 
   state = {
@@ -22,37 +24,40 @@ class TtsLanguagesScreen extends React.Component {
 
   componentWillMount() {
     Tts.voices().then(voices => {
-      console.log('TTS voices', voices);
       this.setState({ voices });
     });
   }
 
   onPress = id => {
-    console.log('Change TTS default voice to', id);
-    Tts.setDefaultVoice(id);
-    this.refs.toast.show(`${I18n.t('TTS_LANGUAGE_CHANGED')} ${id}`);
+    Tts.setDefaultVoice(id)
+      .then(() => {
+        console.log('DONE');
+        this.refs.toast.show(
+          `${I18n.t('TTS_LANGUAGE_CHANGE_SUCCESS')} ${id}`,
+          CUSTOM_DURATION
+        );
+      })
+      .catch(err => {
+        this.refs.toast.show(`${err}`, CUSTOM_DURATION);
+      });
   };
 
   render() {
     let { voices } = this.state;
+    console.log('voices', voices);
     if (Platform.OS === 'android') {
       voices = voices.filter(voice => voice.notInstalled === false);
     }
-    console.log('render TTS voices', voices);
     return (
       <StyledView>
         <FlatList
           keyExtractor={item => item.id}
           data={voices}
           renderItem={({ item }) => (
-            <TtsVoice id={item.id} onPress={this.onPress} />
+            <TtsVoice voice={item} onPress={this.onPress} />
           )}
         />
-        <Toast
-          ref="toast"
-          position="bottom"
-          positionValue={200}
-        />
+        <Toast ref="toast" position="bottom" positionValue={200} />
       </StyledView>
     );
   }

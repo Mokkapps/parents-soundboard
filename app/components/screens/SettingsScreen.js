@@ -26,7 +26,7 @@ const ButtonGroup = styled.View`
 
 class SettingsScreen extends React.Component {
   static navigationOptions = () => {
-    return { title: 'About' };
+    return { title: I18n.t('SETTINGS_SCREEN_TITLE'), };
   };
 
   onPressContact = () => {
@@ -99,9 +99,9 @@ class SettingsScreen extends React.Component {
           />
         </ButtonGroup>
         <SettingsDivider />
-        <Text style={{ color: 'white' }}>{`${I18n.t(
-          'VERSION'
-        )} ${version}`}</Text>
+        <Text
+          style={{ color: 'white', position: 'absolute', bottom: 0 }}
+        >{`${I18n.t('VERSION')} ${version}`}</Text>
       </StyledContainer>
     );
   }

@@ -1,13 +1,17 @@
 export default {
   MAIL_SUBJECT: 'Parents Soundboard App Feedback',
   VERSION: 'Version',
+  PLACEHOLDER_TEXT: 'Neuer Text',
   CONTACT_US: 'Kontaktiere uns',
   RATE_APP: 'Bewerte die App',
   APP_TITLE: 'Eltern Soundboard',
+  SETTINGS_SCREEN_TITLE: 'Einstellungen',
+  TTS_LANGUAGE_SCREEN_TITLE: 'Verfügbare Sprachen',
   CHECK_TTS: 'Sprachausgabe prüfen',
   INSTALL_TTS_LANGUAGES: 'Sprache installieren',
   CHANGE_TTS_LANGUAGE: 'Sprache ändern',
-  TTS_LANGUAGE_CHANGED: 'Sprache für Sprachausgabe geändert auf:',
+  TTS_LANGUAGE_CHANGE_SUCCESS: 'Sprache für Sprachausgabe geändert auf:',
+  TTS_LANGUAGE_CHANGE_ERROR: 'Fehler beim Sprachwechsel',
   TTS_ALERT: {
     TITLE: 'Sprachausgabe',
     SUCCESS_MESSAGE: 'Die Sprachausgabe ist installiert',

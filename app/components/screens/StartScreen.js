@@ -6,9 +6,10 @@ import styled from 'styled-components';
 
 import I18n from '../../i18n/i18n';
 import SoundList from '../SoundList';
-import StopButton from '../StopButton';
-import AddSoundButton from '../AddSoundButton';
-import EditModeButton from '../EditModeButton';
+import HeaderStopButton from '../HeaderStopButton';
+import HeaderAddSoundButton from '../HeaderAddSoundButton';
+import HeaderEditModeButton from '../HeaderEditModeButton';
+import HeaderSettingsButton from '../HeaderSettingsButton';
 import { retrieveData, AVAILABLE_SOUNDS_STORAGE_KEY } from '../../asyncStorage';
 
 const HeaderButtons = styled.View`
@@ -23,14 +24,10 @@ class StartScreen extends React.Component {
       title: I18n.t('APP_TITLE'),
       headerRight: (
         <HeaderButtons>
-          <StopButton />
-          <AddSoundButton />
-          <EditModeButton />
-          <Icon
-            name="settings"
-            onPress={() => navigation.navigate('Settings')}
-            underlayColor="transparent"
-          />
+          <HeaderStopButton />
+          <HeaderAddSoundButton />
+          <HeaderEditModeButton />
+          <HeaderSettingsButton navigation={navigation} />
         </HeaderButtons>
       )
     };

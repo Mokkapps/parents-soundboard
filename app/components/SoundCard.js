@@ -1,17 +1,20 @@
 import React from 'react';
-import { Text, TextInput } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Text } from 'react-native';
 import styled from 'styled-components';
 
 import { COLORS } from '../constants';
+import SoundCardRemoveIcon from './SoundCardRemoveIcon';
+import SoundCardText from './SoundCardText';
 
 const SoundItem = styled.TouchableOpacity`
   width: 100px;
   height: 100px;
   background-color: ${COLORS.LIGHT_GRAY};
   margin: 5px;
+  padding: 5px;
   border-radius: 5px;
   position: relative;
+  text-align: center;
   align-content: center;
   justify-content: center;
   align-items: center;
@@ -19,31 +22,14 @@ const SoundItem = styled.TouchableOpacity`
 `;
 
 export default ({ sound, editMode, playSound, onTextChange, removeSound }) => (
-  <SoundItem onPress={() => playSound(sound)}>
+  <SoundItem disabled={editMode} onPress={() => playSound(sound)}>
     {editMode ? (
-      <TextInput onChangeText={text => onTextChange(text, sound.id)}>
-        {sound.text}
-      </TextInput>
+      <SoundCardText shownText={sound.text} onTextChange={onTextChange} />
     ) : (
-      <Text>{sound.text}</Text>
+      <Text style={{ textAlign: 'center', color: 'black' }}>{sound.text}</Text>
     )}
     {editMode ? (
-      <Icon
-        containerStyle={{
-          height: 25,
-          width: 25,
-          position: 'absolute',
-          right: 0,
-          top: -12,
-          left: -15,
-          bottom: 0
-        }}
-        raised
-        underlayColor="transparent"
-        name="clear"
-        color="red"
-        onPress={() => removeSound(sound)}
-      />
+      <SoundCardRemoveIcon sound={sound} removeSound={removeSound} />
     ) : null}
   </SoundItem>
 );

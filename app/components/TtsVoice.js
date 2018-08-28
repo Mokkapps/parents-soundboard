@@ -3,15 +3,17 @@ import { Text, Platform, TouchableOpacity } from 'react-native';
 
 import { COLORS } from '../constants';
 
-const getText = id => {
+const getText = voice => {
   if (Platform.OS === 'ios') {
-    return id;
+    const regex = new RegExp(/^com\.apple\.ttsbundle\.(.*)-compact$/g);
+    const voiceName = regex.exec(voice.id)[1];
+    return `${voiceName} (${voice.language})`;
   }
-  return id;
+  return voice.id;
 };
 
-export default ({ onPress, id }) => (
-  <TouchableOpacity onPress={() => onPress(id)}>
+export default ({ onPress, voice }) => (
+  <TouchableOpacity onPress={() => onPress(voice.id)}>
     <Text
       style={{
         margin: 10,
@@ -22,7 +24,7 @@ export default ({ onPress, id }) => (
         color: 'black'
       }}
     >
-      {getText(id)}
+      {getText(voice)}
     </Text>
   </TouchableOpacity>
 );

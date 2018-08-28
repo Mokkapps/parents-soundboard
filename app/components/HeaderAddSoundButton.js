@@ -3,11 +3,15 @@ import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 import { storeData, AVAILABLE_SOUNDS_STORAGE_KEY } from '../asyncStorage';
+import I18n from '../i18n/i18n';
 
 const addNewSound = ({ availableSounds, setAvailableSounds }) => {
   const lastIdInArr = availableSounds[availableSounds.length - 1].id;
   const id = lastIdInArr + 1;
-  const newSounds = [...availableSounds, { id, text: 'TEST' }];
+  const newSounds = [
+    ...availableSounds,
+    { id, text: I18n.t('PLACEHOLDER_TEXT') }
+  ];
 
   setAvailableSounds(newSounds);
   storeData(JSON.stringify(newSounds), AVAILABLE_SOUNDS_STORAGE_KEY);
