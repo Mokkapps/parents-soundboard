@@ -1,7 +1,7 @@
 
 # Created by https://www.gitignore.io/api/reactnative
 
-android/ParentsSoundboard.keystore
+android/app/ParentsSoundboard.keystore
 
 ### ReactNative ###
 # React Native Stack Base
