@@ -7,8 +7,7 @@ import { ANDROID_ADMOB_ID, APPLE_ADMOB_ID, DEV_ADMOB_ID } from '../constants';
 import isTablet from '../deviceDetector';
 
 const AdContainer = styled.View`
-  height: 60;
-  width: 100%;
+  margin: auto;
 `;
 
 const getAdUnitId = () => {

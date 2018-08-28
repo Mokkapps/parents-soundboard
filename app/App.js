@@ -25,6 +25,7 @@ const Stack = createStackNavigator(
   },
   {
     headerMode: 'screen',
+    headerLayoutPreset: 'left',
     navigationOptions: {
       headerTintColor: 'black',
       headerStyle: {
