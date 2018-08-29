@@ -63,14 +63,19 @@ class TtsLanguagesScreen extends React.Component {
         .map(voice => voice.language);
       voices = Array.from(new Set(voices));
     }
-    
+
     return (
       <StyledView>
         <FlatList
+          testID="TtsLanguagesScreen_LanguagesList"
           keyExtractor={item => item.id}
           data={voices}
-          renderItem={({ item }) => (
-            <TtsVoice voice={item} onPress={this.onPress} />
+          renderItem={({ item, index }) => (
+            <TtsVoice
+              testID={`TtsLanguagesScreen_LanguageItem_${index}`}
+              voice={item}
+              onPress={this.onPress}
+            />
           )}
         />
         <Toast ref="toast" position="bottom" positionValue={200} />

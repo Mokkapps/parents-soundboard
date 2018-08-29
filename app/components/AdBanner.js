@@ -18,8 +18,8 @@ const getAdUnitId = () => {
   return Platform.OS === 'android' ? ANDROID_ADMOB_ID : APPLE_ADMOB_ID;
 };
 
-export default () => (
-  <AdContainer>
+export default ({testID}) => (
+  <AdContainer testID={testID}>
     <AdMobBanner
       adSize={isTablet() ? 'fullBanner' : 'banner'}
       adUnitID={getAdUnitId()}

@@ -1,8 +1,9 @@
 import React from 'react';
 import { TextInput } from 'react-native';
 
-export default ({ onTextChange, sound }) => (
+export default ({ onTextChange, sound, testID }) => (
   <TextInput
+    testID={testID}
     multiline
     numberOfLines={2}
     maxLength={50}

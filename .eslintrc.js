@@ -4,6 +4,7 @@ module.exports = {
   env: {
     jest: true
   },
+  plugins: ['detox'],
   rules: {
     'no-use-before-define': 'off',
     'react/jsx-filename-extension': 'off',

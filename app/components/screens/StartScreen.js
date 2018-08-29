@@ -31,28 +31,35 @@ class StartScreen extends React.Component {
     const isPlaying = navigation.getParam('isPlaying', false);
     const editMode = navigation.getParam('editMode', false);
     const setEditMode = navigation.getParam('setEditMode', undefined);
+    const availableSounds = navigation.getParam('availableSounds', []);
+    const setAvailableSounds = navigation.getParam('setAvailableSounds', []);
+    const addNewSound = navigation.getParam('addNewSound', undefined);
     return {
       title: I18n.t('APP_TITLE'),
       headerRight: (
         <HeaderButtons HeaderButtonComponent={HeaderButtonComp}>
           <Item
+            testID="StartScreen_MuteButton"
             title="Mute"
             show={!isPlaying}
             iconName="volume-mute"
             onPress={() => Tts.stop()}
           />
           <Item
+            testID="StartScreen_AddSoundButton"
             title="Add Sound"
             show={!editMode}
             iconName="add"
-            onPress={() => this.addNewSound(navigation.props)}
+            onPress={() => addNewSound({ availableSounds, setAvailableSounds })}
           />
           <Item
+            testID="StartScreen_EditModeButton"
             title="Edit"
             iconName={editMode ? 'save' : 'edit'}
             onPress={() => setEditMode(!editMode)}
           />
           <Item
+            testID="StartScreen_SettingsButton"
             title="Settings"
             iconName="settings"
             onPress={() => navigation.navigate('Settings')}
@@ -80,12 +87,31 @@ class StartScreen extends React.Component {
   }
 
   componentWillMount() {
-    const { editMode, isPlaying, setEditMode } = this.props;
-    this.props.navigation.setParams({ isPlaying, editMode, setEditMode });
+    const {
+      editMode,
+      isPlaying,
+      setEditMode,
+      availableSounds,
+      setAvailableSounds
+    } = this.props;
+    this.props.navigation.setParams({
+      isPlaying,
+      editMode,
+      setEditMode,
+      availableSounds,
+      setAvailableSounds,
+      addNewSound: this.addNewSound
+    });
   }
 
   componentWillUpdate(nextProps) {
-    const { editMode, isPlaying, setEditMode } = nextProps;
+    const {
+      editMode,
+      isPlaying,
+      setEditMode,
+      availableSounds,
+      setAvailableSounds
+    } = nextProps;
     if (nextProps.navigation.getParam('isPlaying', false) !== isPlaying) {
       this.props.navigation.setParams({ isPlaying });
     }
@@ -96,6 +122,17 @@ class StartScreen extends React.Component {
       nextProps.navigation.getParam('setEditMode', undefined) !== setEditMode
     ) {
       this.props.navigation.setParams({ setEditMode });
+    }
+    if (
+      nextProps.navigation.getParam('availableSounds', []) !== availableSounds
+    ) {
+      this.props.navigation.setParams({ availableSounds });
+    }
+    if (
+      nextProps.navigation.getParam('setAvailableSounds', []) !==
+      setAvailableSounds
+    ) {
+      this.props.navigation.setParams({ setAvailableSounds });
     }
   }
 
@@ -114,16 +151,17 @@ class StartScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <SoundList />
-        <AdBanner />
+        <SoundList testID="StartScreen_SoundList" />
+        <AdBanner testID="StartScreen_AdBanner" />
       </View>
     );
   }
 }
 
-const mapStateToProps = ({ isPlaying, editMode }) => ({
+const mapStateToProps = ({ isPlaying, editMode, availableSounds }) => ({
   isPlaying,
-  editMode
+  editMode,
+  availableSounds
 });
 
 const mapDispatchToProps = dispatch => {

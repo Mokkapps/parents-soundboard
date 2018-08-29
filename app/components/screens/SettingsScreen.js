@@ -65,12 +65,16 @@ class SettingsScreen extends React.Component {
 
   render() {
     return (
-      <StyledContainer>
+      <StyledContainer testID="SettingsScreen_Container">
         <Text h4 style={{ color: 'white' }}>
           TTS
         </Text>
         <ButtonGroup>
-          <SettingsButton title={I18n.t('CHECK_TTS')} onPress={this.checkTts} />
+          <SettingsButton
+            testID="SettingsScreen_CheckTtsButton"
+            title={I18n.t('CHECK_TTS')}
+            onPress={this.checkTts}
+          />
           {Platform.OS === 'android' ? (
             <SettingsButton
               title={I18n.t('INSTALL_TTS_LANGUAGES')}
@@ -79,6 +83,7 @@ class SettingsScreen extends React.Component {
             />
           ) : null}
           <SettingsButton
+            testID="SettingsScreen_ChangeTtsLanguageButton"
             title={I18n.t('CHANGE_TTS_LANGUAGE')}
             onPress={() => this.props.navigation.navigate('TtsLanguages')}
           />
@@ -88,15 +93,18 @@ class SettingsScreen extends React.Component {
         </Text>
         <ButtonGroup>
           <SettingsButton
+            testID="SettingsScreen_RateAppButton"
             title={I18n.t('RATE_APP')}
             onPress={this.onPressRate}
           />
           <SettingsButton
+            testID="SettingsScreen_ContactUsButton"
             title={I18n.t('CONTACT_US')}
             onPress={this.onPressContact}
           />
         </ButtonGroup>
         <Text
+          testID="SettingsScreen_VersionNumber"
           style={{ color: 'white', position: 'absolute', bottom: 0 }}
         >{`${I18n.t('VERSION')} ${version}`}</Text>
       </StyledContainer>

@@ -21,18 +21,30 @@ const SoundItem = styled.TouchableOpacity`
   flex: 1;
 `;
 
-export default ({ sound, editMode, playSound, onTextChange, removeSound }) => (
-  <SoundItem disabled={editMode} onPress={() => playSound(sound)}>
+export default ({
+  index,
+  sound,
+  editMode,
+  playSound,
+  onTextChange,
+  removeSound
+}) => (
+  <SoundItem
+    testID={`StartScreen_SoundListItem_${index}`}
+    disabled={editMode}
+    onPress={() => playSound(sound)}
+  >
     {editMode ? (
-      <SoundCardText
-        sound={sound}
-        onTextChange={onTextChange}
-      />
+      <SoundCardText testID={`StartScreen_SoundListItem_${index}_TextInput`} sound={sound} onTextChange={onTextChange} />
     ) : (
-      <Text style={{ textAlign: 'center', color: 'black' }}>{sound.text}</Text>
+      <Text testID={`StartScreen_SoundListItem_${index}_Text`} style={{ textAlign: 'center', color: 'black' }}>{sound.text}</Text>
     )}
     {editMode ? (
-      <SoundCardRemoveIcon sound={sound} removeSound={removeSound} />
+      <SoundCardRemoveIcon
+        testID={`StartScreen_SoundListItem_${index}_RemoveButton`}
+        sound={sound}
+        removeSound={removeSound}
+      />
     ) : null}
   </SoundItem>
 );

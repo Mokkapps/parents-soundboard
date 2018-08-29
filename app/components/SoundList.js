@@ -61,10 +61,11 @@ class SoundList extends React.Component {
     this.updateAvailableSounds(newAvailableSounds);
   };
 
-  renderItem = ({ item }) => {
+  renderItem = ({ item, index }) => {
     const { editMode } = this.props;
     return (
       <SoundCard
+        index={index}
         sound={item}
         editMode={editMode}
         playSound={this.playSound}
@@ -90,11 +91,13 @@ class SoundList extends React.Component {
   };
 
   render() {
-    const { editMode, availableSounds } = this.props;
+    const { editMode, availableSounds, testID } = this.props;
     return (
-      <SoundsView>
+      <SoundsView testID={testID}>
         {editMode ? (
-          <DescriptionText>{I18n.t('EDIT_MODE_DESC')}</DescriptionText>
+          <DescriptionText testID="StartScreen_EditModeDescriptionText">
+            {I18n.t('EDIT_MODE_DESC')}
+          </DescriptionText>
         ) : null}
         <FlatList
           keyExtractor={item => item.id}

@@ -2,8 +2,9 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { Icon } from 'react-native-elements';
 
-export default ({ removeSound, sound }) => (
+export default ({ testID, removeSound, sound }) => (
   <Icon
+    testID={testID}
     containerStyle={{
       height: 25,
       width: 25,
