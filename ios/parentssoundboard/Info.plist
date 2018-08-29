@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Parents Soundboard</string>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -38,6 +38,8 @@
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Your location is required for better ads </string>
 	<key>NSLocationUsageDescription</key>
+	<string>Your location is required for better ads </string>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location is required for better ads </string>
 	<key>UIAppFonts</key>
 	<array>

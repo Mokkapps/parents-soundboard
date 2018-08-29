@@ -5,10 +5,6 @@ env:
   global:
   - NODE_VERSION="8.9.1"
 
-cache:
-  directories:
-    - "node_modules"
-
 install:
 - brew tap wix/brew
 - brew install applesimutils
@@ -17,6 +13,7 @@ install:
 - nvm install $NODE_VERSION
 - nvm use $NODE_VERSION
 
+- npm cache clean -f
 - npm install -g react-native-cli
 - npm install -g detox-cli
 - npm install

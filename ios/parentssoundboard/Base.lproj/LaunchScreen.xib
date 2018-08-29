@@ -28,23 +28,14 @@
                         <constraint firstAttribute="width" constant="240" id="tA4-A7-nPI"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parents Soundboard" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pc8-rO-b5Q">
-                    <rect key="frame" x="20" y="314" width="440" height="26.5"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="pc8-rO-b5Q" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="4JZ-Ap-Dqn"/>
                 <constraint firstItem="PAD-Ot-1c0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="120" id="4tX-qR-nzk"/>
-                <constraint firstItem="pc8-rO-b5Q" firstAttribute="top" secondItem="PAD-Ot-1c0" secondAttribute="bottom" constant="10" id="FIj-hi-k1K"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
                 <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
                 <constraint firstItem="PAD-Ot-1c0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="176" id="uDg-IN-tOa"/>
-                <constraint firstAttribute="trailing" secondItem="pc8-rO-b5Q" secondAttribute="trailing" constant="20" id="ucX-CZ-pw8"/>
                 <constraint firstAttribute="trailing" secondItem="PAD-Ot-1c0" secondAttribute="trailing" constant="120" id="waV-EV-WmI"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
