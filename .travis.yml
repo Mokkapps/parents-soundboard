@@ -5,6 +5,10 @@ env:
   global:
   - NODE_VERSION=stable
 
+cache:
+  directories:
+    - "node_modules"
+
 install:
 - brew tap wix/brew
 - brew install applesimutils
