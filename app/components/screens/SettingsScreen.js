@@ -78,7 +78,6 @@ class SettingsScreen extends React.Component {
           {Platform.OS === 'android' ? (
             <SettingsButton
               title={I18n.t('INSTALL_TTS_LANGUAGES')}
-              // onPress={() => this.props.navigation.navigate('TtsLanguages')}
               onPress={() => Tts.requestInstallData()}
             />
           ) : null}

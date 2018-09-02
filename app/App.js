@@ -10,6 +10,7 @@ import { COLORS } from './constants';
 import StartScreen from './components/screens/StartScreen';
 import SettingsScreen from './components/screens/SettingsScreen';
 import TtsLanguagesScreen from './components/screens/TtsLanguagesScreen';
+import PlaylistScreen from './components/screens/PlaylistScreen';
 
 const StyledView = styled.View`
   flex: 1;
@@ -21,7 +22,8 @@ const Stack = createStackNavigator(
   {
     Start: { screen: StartScreen },
     Settings: { screen: SettingsScreen },
-    TtsLanguages: { screen: TtsLanguagesScreen }
+    TtsLanguages: { screen: TtsLanguagesScreen },
+    Playlist: { screen: PlaylistScreen }
   },
   {
     headerMode: 'screen',

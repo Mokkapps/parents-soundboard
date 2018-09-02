@@ -42,7 +42,7 @@ class StartScreen extends React.Component {
             testID="StartScreen_MuteButton"
             title="Mute"
             show={!isPlaying}
-            iconName="volume-mute"
+            iconName="stop"
             onPress={() => Tts.stop()}
           />
           <Item
@@ -149,9 +149,10 @@ class StartScreen extends React.Component {
   };
 
   render() {
+    const { navigation } = this.props;
     return (
       <View style={{ flex: 1 }}>
-        <SoundList testID="StartScreen_SoundList" />
+        <SoundList navigation={navigation} testID="StartScreen_SoundList" />
         <AdBanner testID="StartScreen_AdBanner" />
       </View>
     );

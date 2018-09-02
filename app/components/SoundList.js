@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import I18n from '../i18n/i18n';
 import SoundCard from './SoundCard';
+import SettingsButton from './SettingsButton';
 import { storeData, AVAILABLE_SOUNDS_STORAGE_KEY } from '../asyncStorage';
 
 const SoundsView = styled.View`
@@ -30,21 +31,36 @@ class SoundList extends React.Component {
   constructor() {
     super();
 
-    Tts.addEventListener('tts-start', event => console.log('TTS start', event));
     Tts.addEventListener('tts-finish', event => {
-      console.log('TTS finish', event);
-      this.props.setIsPlaying(false);
+      this.updatePlaylist(event.utteranceId);
     });
+
     Tts.addEventListener('tts-cancel', event => {
-      console.log('TTS cancel', event);
-      this.props.setIsPlaying(false);
+      this.updatePlaylist(event.utteranceId);
     });
   }
 
+  updatePlaylist = (id, text) => {
+    const { setPlaylist, playlist } = this.props;
+
+    let newPlaylist = [...playlist];
+
+    if (text) {
+      newPlaylist.push({ id, text });
+    } else {
+      const isIdInPlaylist = newPlaylist.findIndex(p => p.id === id) !== -1;
+      if (isIdInPlaylist) {
+        newPlaylist = newPlaylist.filter(entry => entry.id !== id);
+      }
+    }
+
+    setPlaylist(newPlaylist);
+  };
+
   playSound = sound => {
-    const { setIsPlaying } = this.props;
-    Tts.speak(sound.text);
-    setIsPlaying(true);
+    Tts.speak(sound.text).then(id => {
+      this.updatePlaylist(id, sound.text);
+    });
   };
 
   onTextChange = (text, id) => {
@@ -91,9 +107,15 @@ class SoundList extends React.Component {
   };
 
   render() {
-    const { editMode, availableSounds, testID } = this.props;
+    const { editMode, availableSounds, testID, isPlaying, navigation } = this.props;
     return (
       <SoundsView testID={testID}>
+        {isPlaying ? (
+          <SettingsButton
+            onPress={() => navigation.navigate('Playlist')}
+            title="Show Playlist"
+          />
+        ) : null}
         {editMode ? (
           <DescriptionText testID="StartScreen_EditModeDescriptionText">
             {I18n.t('EDIT_MODE_DESC')}
@@ -113,17 +135,24 @@ class SoundList extends React.Component {
   }
 }
 
-const mapStateToProps = ({ editMode, availableSounds }) => ({
+const mapStateToProps = ({
   editMode,
-  availableSounds
+  availableSounds,
+  playlist,
+  isPlaying
+}) => ({
+  editMode,
+  isPlaying,
+  availableSounds,
+  playlist
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    setIsPlaying: isPlaying =>
-      dispatch({ type: 'SET_IS_PLAYING', payload: { isPlaying } }),
     setAvailableSounds: availableSounds =>
-      dispatch({ type: 'SET_AVAILABLE_SOUNDS', payload: { availableSounds } })
+      dispatch({ type: 'SET_AVAILABLE_SOUNDS', payload: { availableSounds } }),
+    setPlaylist: playlist =>
+      dispatch({ type: 'SET_PLAYLIST', payload: { playlist } })
   };
 };
 

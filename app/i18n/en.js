@@ -5,6 +5,8 @@ export default {
   CONTACT_US: 'Contact us',
   RATE_APP: 'Rate the app',
   APP_TITLE: 'Parents Soundboard',
+  PLAYLIST_SCREEN_TITLE: 'Playlist',
+  PLAYLIST_SCREEN_EMPTY: 'Playlist is currently empty',
   SETTINGS_SCREEN_TITLE: 'Settings',
   TTS_LANGUAGE_SCREEN_TITLE: 'Available voices',
   CHECK_TTS: 'Check voice output',

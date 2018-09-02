@@ -1,11 +1,12 @@
-export const SET_IS_PLAYING = 'SET_IS_PLAYING';
 export const SET_EDIT_MODE = 'SET_EDIT_MODE';
 export const SET_AVAILABLE_SOUNDS = 'SET_AVAILABLE_SOUNDS';
+export const SET_PLAYLIST = 'SET_PLAYLIST';
 
 const initialState = {
   editMode: false,
   isPlaying: false,
-  availableSounds: []
+  availableSounds: [],
+  playlist: []
 };
 
 export default function reducer(state = initialState, action) {
@@ -15,12 +16,13 @@ export default function reducer(state = initialState, action) {
     case SET_EDIT_MODE:
       const { editMode } = action.payload;
       return { ...state, editMode };
-    case SET_IS_PLAYING:
-      const { isPlaying } = action.payload;
-      return { ...state, isPlaying };
     case SET_AVAILABLE_SOUNDS:
       const { availableSounds } = action.payload;
       return { ...state, availableSounds };
+    case SET_PLAYLIST:
+      const { playlist } = action.payload;
+      const isPlaying = playlist.length > 0;
+      return { ...state, playlist, isPlaying };
     default:
       return state;
   }
