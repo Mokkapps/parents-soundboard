@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  parentssoundboard
+
+  Created by Michael Hoffmann on 29.08.18.
+  Copyright © 2018 Facebook. All rights reserved.
+*/
+"CFBundleDisplayName" = "Parents Soundboard";
+"CFBundleName" = "Parents Soundboard";

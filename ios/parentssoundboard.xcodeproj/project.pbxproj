@@ -45,6 +45,7 @@
 		65C378DF28754F57BF96628D /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F58C2188B2F45C188B0C74E /* Octicons.ttf */; };
 		6CAFD7334B934F1EB1CCF45C /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1D892A3E1A48C1AA84A873 /* libRNI18n.a */; };
 		7009A14711CB4BC1A786EF41 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE8C3198515A445BAA059D5A /* Zocial.ttf */; };
+		76AB78DA21373E390079FECE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 76AB78DC21373E390079FECE /* InfoPlist.strings */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8713416119714F96826B5BF4 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA8F96366A354A54ACC600C7 /* MaterialCommunityIcons.ttf */; };
 		8E1E7D9959C94590BE83A296 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A8954A982344690AAE4A278 /* Ionicons.ttf */; };
@@ -400,6 +401,9 @@
 		44ABCBEB1C4040279C203198 /* libPods-parentssoundboard-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-parentssoundboard-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A8954A982344690AAE4A278 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		76AB78AD21373E170079FECE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		76AB78DB21373E390079FECE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		76AB78DD21373E3A0079FECE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		792002BD6EFCAB61BEDC45F6 /* Pods-parentssoundboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parentssoundboard.release.xcconfig"; path = "Pods/Target Support Files/Pods-parentssoundboard/Pods-parentssoundboard.release.xcconfig"; sourceTree = "<group>"; };
 		7B2D9CBE12804D56B9BC32ED /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -578,6 +582,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				76AB78DC21373E390079FECE /* InfoPlist.strings */,
 			);
 			name = parentssoundboard;
 			sourceTree = "<group>";
@@ -890,6 +895,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -1280,6 +1286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				76AB78DA21373E390079FECE /* InfoPlist.strings in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				6596725A94C6453EA5DDA65F /* Entypo.ttf in Resources */,
 				4B8185EAE74940EA8697836A /* EvilIcons.ttf in Resources */,
@@ -1434,9 +1441,19 @@
 			isa = PBXVariantGroup;
 			children = (
 				13B07FB21A68108700A75B9A /* Base */,
+				76AB78AD21373E170079FECE /* de */,
 			);
 			name = LaunchScreen.xib;
 			path = parentssoundboard;
+			sourceTree = "<group>";
+		};
+		76AB78DC21373E390079FECE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				76AB78DB21373E390079FECE /* en */,
+				76AB78DD21373E3A0079FECE /* de */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1708,6 +1725,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1749,6 +1767,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
