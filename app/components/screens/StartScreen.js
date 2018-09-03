@@ -2,29 +2,17 @@ import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import Tts from 'react-native-tts';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import HeaderButtons, {
-  HeaderButton,
-  Item
-} from 'react-navigation-header-buttons';
+import HeaderButtons, { Item } from 'react-navigation-header-buttons';
 
 import I18n from '../../i18n/i18n';
 import SoundList from '../SoundList';
+import HeaderButton from '../HeaderButton';
 import AdBanner from '../AdBanner';
 import {
   storeData,
   retrieveData,
   AVAILABLE_SOUNDS_STORAGE_KEY
 } from '../../asyncStorage';
-
-const HeaderButtonComp = props => (
-  <HeaderButton
-    {...props}
-    IconComponent={MaterialIcons}
-    iconSize={25}
-    color="black"
-  />
-);
 
 class StartScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -34,16 +22,20 @@ class StartScreen extends React.Component {
     const availableSounds = navigation.getParam('availableSounds', []);
     const setAvailableSounds = navigation.getParam('setAvailableSounds', []);
     const addNewSound = navigation.getParam('addNewSound', undefined);
+    const setPlaylist = navigation.getParam('setPlaylist', undefined);
     return {
       title: I18n.t('APP_TITLE'),
       headerRight: (
-        <HeaderButtons HeaderButtonComponent={HeaderButtonComp}>
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item
             testID="StartScreen_MuteButton"
             title="Mute"
             show={!isPlaying}
             iconName="stop"
-            onPress={() => Tts.stop()}
+            onPress={() => {
+              Tts.stop();
+              setPlaylist([]);
+            }}
           />
           <Item
             testID="StartScreen_AddSoundButton"
@@ -92,7 +84,8 @@ class StartScreen extends React.Component {
       isPlaying,
       setEditMode,
       availableSounds,
-      setAvailableSounds
+      setAvailableSounds,
+      setPlaylist
     } = this.props;
     this.props.navigation.setParams({
       isPlaying,
@@ -100,7 +93,8 @@ class StartScreen extends React.Component {
       setEditMode,
       availableSounds,
       setAvailableSounds,
-      addNewSound: this.addNewSound
+      addNewSound: this.addNewSound,
+      setPlaylist
     });
   }
 
@@ -110,7 +104,8 @@ class StartScreen extends React.Component {
       isPlaying,
       setEditMode,
       availableSounds,
-      setAvailableSounds
+      setAvailableSounds,
+      setPlaylist
     } = nextProps;
     if (nextProps.navigation.getParam('isPlaying', false) !== isPlaying) {
       this.props.navigation.setParams({ isPlaying });
@@ -133,6 +128,10 @@ class StartScreen extends React.Component {
       setAvailableSounds
     ) {
       this.props.navigation.setParams({ setAvailableSounds });
+    }
+
+    if (nextProps.navigation.getParam('setPlaylist', []) !== setPlaylist) {
+      this.props.navigation.setParams({ setPlaylist });
     }
   }
 
@@ -170,7 +169,9 @@ const mapDispatchToProps = dispatch => {
     setAvailableSounds: availableSounds =>
       dispatch({ type: 'SET_AVAILABLE_SOUNDS', payload: { availableSounds } }),
     setEditMode: editMode =>
-      dispatch({ type: 'SET_EDIT_MODE', payload: { editMode } })
+      dispatch({ type: 'SET_EDIT_MODE', payload: { editMode } }),
+    setPlaylist: playlist =>
+      dispatch({ type: 'SET_PLAYLIST', payload: { playlist } })
   };
 };
 

@@ -3,7 +3,8 @@ import reducer from './reducer';
 const initialState = {
   editMode: false,
   isPlaying: false,
-  availableSounds: []
+  availableSounds: [],
+  playlist: []
 };
 
 it('correctly handles SET_EDIT_MODE action', () => {
@@ -14,19 +15,21 @@ it('correctly handles SET_EDIT_MODE action', () => {
   expect(newState).toEqual({
     editMode: true,
     isPlaying: false,
-    availableSounds: []
+    availableSounds: [],
+    playlist: []
   });
 });
 
-it('correctly handles SET_IS_PLAYING action', () => {
+it('correctly handles SET_PLAYLIST action', () => {
   const newState = reducer(initialState, {
-    type: 'SET_IS_PLAYING',
-    payload: { isPlaying: true }
+    type: 'SET_PLAYLIST',
+    payload: { playlist: [{ text: 'Hallo', id: 123 }] }
   });
   expect(newState).toEqual({
     editMode: false,
     isPlaying: true,
-    availableSounds: []
+    availableSounds: [],
+    playlist: [{ text: 'Hallo', id: 123 }]
   });
 });
 
@@ -38,6 +41,7 @@ it('correctly handles SET_AVAILABLE_SOUNDS action', () => {
   expect(newState).toEqual({
     editMode: false,
     isPlaying: false,
-    availableSounds: [1, 2, 3]
+    availableSounds: [1, 2, 3],
+    playlist: []
   });
 });

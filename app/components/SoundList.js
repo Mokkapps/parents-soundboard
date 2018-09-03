@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 import I18n from '../i18n/i18n';
 import SoundCard from './SoundCard';
-import SettingsButton from './SettingsButton';
 import { storeData, AVAILABLE_SOUNDS_STORAGE_KEY } from '../asyncStorage';
 
 const SoundsView = styled.View`
@@ -107,15 +106,9 @@ class SoundList extends React.Component {
   };
 
   render() {
-    const { editMode, availableSounds, testID, isPlaying, navigation } = this.props;
+    const { editMode, availableSounds, testID } = this.props;
     return (
       <SoundsView testID={testID}>
-        {isPlaying ? (
-          <SettingsButton
-            onPress={() => navigation.navigate('Playlist')}
-            title="Show Playlist"
-          />
-        ) : null}
         {editMode ? (
           <DescriptionText testID="StartScreen_EditModeDescriptionText">
             {I18n.t('EDIT_MODE_DESC')}
