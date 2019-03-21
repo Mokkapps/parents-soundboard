@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation';
+import { createAppContainer, createStackNavigator } from 'react-navigation';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import styled from 'styled-components';
@@ -18,7 +18,7 @@ const StyledView = styled.View`
 
 const store = createStore(reducer);
 
-const Stack = createStackNavigator(
+const AppNavigator = createStackNavigator(
   {
     Start: { screen: StartScreen },
     Settings: { screen: SettingsScreen },
@@ -28,7 +28,7 @@ const Stack = createStackNavigator(
   {
     headerMode: 'screen',
     headerLayoutPreset: 'left',
-    navigationOptions: {
+    defaultNavigationOptions: {
       headerTintColor: 'black',
       headerStyle: {
         backgroundColor: COLORS.MOKKAPPS_RED
@@ -37,6 +37,8 @@ const Stack = createStackNavigator(
     cardStyle: { backgroundColor: COLORS.DARK_GRAY }
   }
 );
+
+const AppContainer = createAppContainer(AppNavigator);
 
 class App extends React.Component {
   constructor() {
@@ -60,7 +62,7 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <StyledView>
-          <Stack />
+          <AppContainer />
         </StyledView>
       </Provider>
     );

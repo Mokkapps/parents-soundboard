@@ -7,9 +7,9 @@ export default ({ title, onPress, testID }) => (
     testID={testID}
     small
     raised
-    backgroundColor={COLORS.LIGHT_GRAY}
+    buttonStyle={{ backgroundColor: COLORS.LIGHT_GRAY }}
     color="black"
-    containerViewStyle={{ marginTop: 10 }}
+    containerStyle={{ marginTop: 10 }}
     title={title}
     onPress={() => onPress()}
   />
