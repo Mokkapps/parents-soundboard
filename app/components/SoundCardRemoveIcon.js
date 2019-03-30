@@ -6,18 +6,17 @@ export default ({ testID, removeSound, sound }) => (
   <Icon
     testID={testID}
     containerStyle={{
-      height: 25,
-      width: 25,
       position: 'absolute',
       right: 0,
-      top: Platform.OS === 'android' ? -4 : -13,
-      left: Platform.OS === 'android' ? -5 : -15,
+      top: Platform.OS === 'android' ? -10 : -13,
+      left: Platform.OS === 'android' ? -10 : -15,
       bottom: 0
     }}
     raised
     underlayColor="transparent"
     name="clear"
     color="red"
+    size={15}
     onPress={() => removeSound(sound)}
   />
 );

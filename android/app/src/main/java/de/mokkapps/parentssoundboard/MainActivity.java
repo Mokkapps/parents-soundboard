@@ -1,4 +1,4 @@
-package com.parentssoundboard;
+package de.mokkapps.parentssoundboard;
 
 import com.facebook.react.ReactActivity;
 

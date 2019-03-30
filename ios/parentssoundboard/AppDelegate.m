@@ -9,13 +9,15 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-
-@import GoogleMobileAds;
+@import Firebase;
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  // Initialize Firebase
+  [FIRApp configure];
+  
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
@@ -31,9 +33,6 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  
-  // Initialize Google Mobile Ads SDK
-  [GADMobileAds configureWithApplicationID:@"ca-app-pub-3605892700353864~6311465901"];
 
   return YES;
 }

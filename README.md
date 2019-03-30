@@ -11,30 +11,32 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 ```
 $ git clone https://github.com/Mokkapps/parents-soundboard
 $ cd parents-soundboard
-$ npm install
-$ npm start
+$ yarn install
+$ yarn start
 
-$ npm android
+$ yarn android
 or
-$ npm ios
+$ yarn ios
 ```
 
 # Run iOS or Android release builds locally
 
 ```
-$ npm android-release
+$ yarn android-release
 or
-$ npm ios-release
+$ yarn ios-release
 ```
 
 # Build releases for App stores
 
 ## iOS
-* In Xcode open _parentssoundboard.xcworkspace__ from ./ios folder 
-* Select ```Product > Archive``` from menu bar
+
+- In Xcode open \_parentssoundboard.xcworkspace\_\_ from ./ios folder
+- Select `Product > Archive` from menu bar
 
 ## Android
-* Place your keystore in ./android folder
-* Enter your keystore password in ./android/gradle.properties
-* Run ```cd android && ./gradlew assembleRelease```
 
+- Place your keystore in ./android/app folder
+- Enter your keystore password in ./android/gradle.properties
+- Run `cd android && ./gradlew assembleRelease`
+- If you still have issues, checkout the [official docs](https://facebook.github.io/react-native/docs/signed-apk-android)

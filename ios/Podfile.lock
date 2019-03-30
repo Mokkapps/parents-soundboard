@@ -1,16 +1,76 @@
 PODS:
-  - Google-Mobile-Ads-SDK (7.32.0)
+  - Firebase/Core (5.15.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.4.0)
+  - Firebase/CoreOnly (5.15.0):
+    - FirebaseCore (= 5.1.10)
+  - FirebaseAnalytics (5.4.0):
+    - FirebaseCore (~> 5.1)
+    - FirebaseInstanceID (~> 3.3)
+    - GoogleAppMeasurement (= 5.4.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - FirebaseCore (5.1.10):
+    - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseInstanceID (3.3.0):
+    - FirebaseCore (~> 5.1)
+    - GoogleUtilities/Environment (~> 5.3)
+    - GoogleUtilities/UserDefaults (~> 5.3)
+  - GoogleAppMeasurement (5.4.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - GoogleUtilities/AppDelegateSwizzler (5.5.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (5.5.0)
+  - GoogleUtilities/Logger (5.5.0):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (5.5.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (5.5.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (5.5.0)"
+  - GoogleUtilities/Reachability (5.5.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (5.5.0):
+    - GoogleUtilities/Logger
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
 
 DEPENDENCIES:
-  - Google-Mobile-Ads-SDK
+  - Firebase/Core (~> 5.15.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Google-Mobile-Ads-SDK
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - GoogleAppMeasurement
+    - GoogleUtilities
+    - nanopb
 
 SPEC CHECKSUMS:
-  Google-Mobile-Ads-SDK: 2aca87e46e860f1e1fc0fdc1201dd9caa4be9ba6
+  Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
+  FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
+  FirebaseCore: 35747502d9e8c6ee217385ad04446c7c2aaf9c5c
+  FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
+  GoogleAppMeasurement: 98b71f5e04142793729a5ef23e5b96651ff4b70f
+  GoogleUtilities: 6481e6318c5fcabaaa8513ef8120f329055d7c10
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: 1463c8ced1f80a4f3b2afe70a15017f53081d23e
+PODFILE CHECKSUM: bd9de2befdbfd22ce54192bad4a68172ebd989c1
 
 COCOAPODS: 1.6.0
