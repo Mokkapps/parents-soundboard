@@ -6,6 +6,11 @@ The texts can be edited and are spoken via TTS. You can change the TTS voice in 
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
+# Releases
+
+* [Android](https://play.google.com/store/apps/details?id=de.mokkapps.parentssoundboard)
+* [iOS](https://itunes.apple.com/us/app/parents-soundboard/id1434425575?mt=8)
+
 # Run locally on your development machine
 
 ```
