@@ -11,7 +11,8 @@ export default ({ onTextChange, sound, testID }) => (
       textAlign: 'center',
       width: 'auto',
       height: 'auto',
-      color: 'black'
+      color: 'black',
+      zIndex: 99
     }}
     onChangeText={text => onTextChange(text, sound.id)}
   >

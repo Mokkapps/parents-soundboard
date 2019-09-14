@@ -25,15 +25,21 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912470580488-un9hgm75hnqctvhlmli9vn7dmf735kgt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "912470580488-d9aln29a70gjvo8oqe64c05f614ogvnv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "de.mokkapps.parentssoundboard",
+                "app_store_id": "1434425575"
+              }
+            }
+          ]
         }
       }
     }

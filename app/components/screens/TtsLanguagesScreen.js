@@ -22,7 +22,7 @@ class TtsLanguagesScreen extends React.Component {
     voices: []
   };
 
-  componentWillMount() {
+  componentDidMount() {
     Tts.voices().then(voices => {
       this.setState({ voices });
     });

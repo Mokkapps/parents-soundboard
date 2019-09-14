@@ -7,7 +7,7 @@ import Tts from 'react-native-tts';
 
 import { MOKKAPPS_MAIL, APP_STORE_URL, GOOGLE_PLAY_URL } from '../../constants';
 import I18n from '../../i18n/i18n';
-import { version } from '../../../package.json';
+import { version } from '../../../version.json';
 import SettingsButton from '../SettingsButton';
 
 const StyledContainer = styled.View`

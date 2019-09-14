@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import HeaderButtons, { Item } from 'react-navigation-header-buttons';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import Tts from 'react-native-tts';
 
 import I18n from '../../i18n/i18n';
@@ -43,7 +43,7 @@ class PlaylistScreen extends React.Component {
     };
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const { isPlaying, setPlaylist } = this.props;
     this.props.navigation.setParams({
       isPlaying
@@ -53,7 +53,7 @@ class PlaylistScreen extends React.Component {
     });
   }
 
-  componentWillUpdate(nextProps) {
+  componentDidUpdate(nextProps) {
     const { isPlaying } = nextProps;
     if (nextProps.navigation.getParam('isPlaying', false) !== isPlaying) {
       this.props.navigation.setParams({ isPlaying });

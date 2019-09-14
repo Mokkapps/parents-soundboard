@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import Tts from 'react-native-tts';
-import HeaderButtons, { Item } from 'react-navigation-header-buttons';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import I18n from '../../i18n/i18n';
 import SoundList from '../SoundList';
@@ -78,7 +78,7 @@ class StartScreen extends React.Component {
       });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const {
       editMode,
       isPlaying,
@@ -98,7 +98,7 @@ class StartScreen extends React.Component {
     });
   }
 
-  componentWillUpdate(nextProps) {
+  componentDidUpdate(nextProps) {
     const {
       editMode,
       isPlaying,

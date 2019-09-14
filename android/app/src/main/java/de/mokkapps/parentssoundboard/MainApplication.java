@@ -4,28 +4,14 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 
-import io.invertase.firebase.RNFirebasePackage;
-
-import com.oblador.vectoricons.VectorIconsPackage;
-
-import net.no_mad.tts.TextToSpeechPackage;
-
-import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.facebook.react.PackageList;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
-import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.admob.RNFirebaseAdMobPackage;
-import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
-
-import com.google.android.gms.ads.MobileAds;
-
-
-import java.util.Arrays;
 import java.util.List;
+
+import io.invertase.firebase.admob.RNFirebaseAdMobPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -37,16 +23,10 @@ public class MainApplication extends Application implements ReactApplication {
 
         @Override
         protected List<ReactPackage> getPackages() {
-            return Arrays.<ReactPackage>asList(
-                    new MainReactPackage(),
-                    new VectorIconsPackage(),
-                    new TextToSpeechPackage(),
-                    new RNI18nPackage(),
-                    new RNGestureHandlerPackage(),
-                    new RNFirebasePackage(),
-                    new RNFirebaseAdMobPackage(),
-                    new RNFirebaseAnalyticsPackage()
-            );
+            @SuppressWarnings("UnnecessaryLocalVariable")
+            List<ReactPackage> packages = new PackageList(this).getPackages();
+            packages.add(new RNFirebaseAdMobPackage());
+            return packages;
         }
 
         @Override
@@ -64,6 +44,5 @@ public class MainApplication extends Application implements ReactApplication {
     public void onCreate() {
         super.onCreate();
         SoLoader.init(this, /* native exopackage */ false);
-        MobileAds.initialize(this, "ca-app-pub-9544475189733731~8297630297");
     }
 }

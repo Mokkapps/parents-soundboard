@@ -1,7 +1,6 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import firebase from 'react-native-firebase';
-import styled from 'styled-components';
 
 import { ANDROID_ADMOB_ID, APPLE_ADMOB_ID, DEV_ADMOB_ID } from '../constants';
 
