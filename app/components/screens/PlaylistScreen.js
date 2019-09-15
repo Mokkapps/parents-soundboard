@@ -53,11 +53,14 @@ class PlaylistScreen extends React.Component {
     });
   }
 
-  componentDidUpdate(nextProps) {
-    const { isPlaying } = nextProps;
+  shouldComponentUpdate(nextProps) {
+    const {
+      isPlaying
+    } = nextProps;
     if (nextProps.navigation.getParam('isPlaying', false) !== isPlaying) {
       this.props.navigation.setParams({ isPlaying });
     }
+    return true;
   }
 
   render() {

@@ -36,6 +36,10 @@ class SettingsScreen extends React.Component {
     }).catch(console.error);
   };
 
+  onPressDebugPlaylist = () => {
+    this.props.navigation.navigate('Playlist');
+  }
+
   onPressRate = async () => {
     if (Platform.OS === 'ios') {
       await Linking.openURL(APP_STORE_URL);
@@ -101,6 +105,13 @@ class SettingsScreen extends React.Component {
             title={I18n.t('CONTACT_US')}
             onPress={this.onPressContact}
           />
+          {__DEV__ ? (
+            <SettingsButton
+              testID="SettingsScreen_PlaylistDebugButton"
+              title="Debug Playlist"
+              onPress={this.onPressDebugPlaylist}
+            />
+          ) : null}
         </ButtonGroup>
         <Text
           testID="SettingsScreen_VersionNumber"

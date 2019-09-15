@@ -98,18 +98,24 @@ class StartScreen extends React.Component {
     });
   }
 
+  shouldComponentUpdate(nextProps) {
+    const {
+      isPlaying
+    } = nextProps;
+    if (nextProps.navigation.getParam('isPlaying', false) !== isPlaying) {
+      this.props.navigation.setParams({ isPlaying });
+    }
+    return true;
+  }
+
   componentDidUpdate(nextProps) {
     const {
       editMode,
-      isPlaying,
       setEditMode,
       availableSounds,
       setAvailableSounds,
       setPlaylist
     } = nextProps;
-    if (nextProps.navigation.getParam('isPlaying', false) !== isPlaying) {
-      this.props.navigation.setParams({ isPlaying });
-    }
     if (nextProps.navigation.getParam('editMode', false) !== editMode) {
       this.props.navigation.setParams({ editMode });
     }
@@ -158,8 +164,14 @@ class StartScreen extends React.Component {
   }
 }
 
-const mapStateToProps = ({ isPlaying, editMode, availableSounds }) => ({
+const mapStateToProps = ({
   isPlaying,
+  playlist,
+  editMode,
+  availableSounds
+}) => ({
+  isPlaying,
+  playlist,
   editMode,
   availableSounds
 });
